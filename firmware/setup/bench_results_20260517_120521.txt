@@ -1,0 +1,80 @@
+Board: alice  (/dev/cu.usbmodem1201)
+Date:  2026-05-17 10:05:21 UTC
+
+
+  OTP Gadget – Exchange Speed Benchmark
+  MicroPython 3.4.0; MicroPython v1.26.0-preview.370.gaa2362d4d.dirty on 2025-07-30
+
+==============================================================
+[1] TRNG  –  os.urandom throughput
+==============================================================
+  Source: os.urandom  (RP2350 hardware TRNG)
+  Measuring (. = 1 MB): ..........
+  10 MB in 86691 ms  →  118 KB/s
+==============================================================
+[2] XOR variants  –  4 KB chunks × 2560  (10 MB total)
+==============================================================
+  (Fixes 4 + 5 in the plan target the worst-case variants)
+
+  bignum (. = 1 MB):      ..........
+  bignum  (current):      10 MB in   13183 ms  →    776 KB/s
+  bytearray (. = 1 MB):   ..........
+  bytearray loop (Fix 4): 10 MB in  108299 ms  →     94 KB/s  (0.1× vs bignum)
+  @native:                not available on this build
+  @viper (Fix 5):         not available on this build
+==============================================================
+[3] AES-CTR  –  manual ECB-based CTR, 1 MB in 4 KB chunks
+==============================================================
+  (Relevant to the write side of all split phases)
+
+  new cipher/block (. = 64 chunks): ....
+  new cipher/block (current): 1 MB in 42548 ms  →  24 KB/s
+  (65536 ECB calls for 1 MB; each creates a new aes object)
+  cached cipher obj (. = 64 chunks): ....
+  cached cipher obj:          1 MB in 41826 ms  →  24 KB/s  (1.0× vs new)
+==============================================================
+[4] SHA-256  –  streaming over 10 MB
+==============================================================
+  (Used during key generation and A-side verification)
+
+  Measuring (. = 1 MB): ..........
+  10 MB in 4694 ms  →  2181 KB/s
+==============================================================
+[5] SD clock speed matrix  (own card, onboard TF on SPI1)
+==============================================================
+  (Fix 3: raising the SDCard baudrate may give 2–5× improvement)
+  Testing 1 MB write + read at each speed. Stops at first failure.
+
+   5 MHz:  write  319 KB/s   read   73 KB/s   PASS
+  10 MHz:  write  445 KB/s   read   78 KB/s   PASS
+  15 MHz:  write  538 KB/s   read   81 KB/s   PASS
+  20 MHz:  write  546 KB/s   read   81 KB/s   PASS
+  25 MHz:  write  690 KB/s   read   83 KB/s   PASS
+
+  → Best passing speed: 25 MHz
+  → Gain vs 5 MHz:  write 2.2×  read 1.1×
+==============================================================
+[6] Composite phase  –  read 2 MB → AES-CTR encrypt → write 2 MB
+==============================================================
+  (Simulates one split-pad pass; using best SD speed from [5]: 25 MHz)
+
+  2 MB (read + encrypt + write) in 119393 ms  →  17 KB/s effective
+
+  ── Extrapolated total exchange time ──────────────────────
+  Current A-side (3 read passes × OTP.bin):
+    reads  20 MB at 83 KB/s  →  247 s
+    writes 10 MB composite     →  602 s
+    total  ≈ 849 s  (14.2 min)
+
+  Fixed A-side (Fix 1+2: 1 combined read pass):
+    reads  10 MB at 83 KB/s  →  123 s
+    writes 10 MB composite     →  602 s
+    total  ≈ 726 s  (12.1 min)
+
+  A-side speedup from Fix 1+2 alone: 1.2×
+==============================================================
+
+  Benchmark complete.
+
+  Restart firmware:   ./scripts/reset.sh --label <name>
+

@@ -1,0 +1,10 @@
+flask>=3.0
+flask-socketio>=5.0
+flask-cors>=4.0
+flask-limiter>=3.0
+pycryptodome>=3.20
+gevent>=24.0
+gevent-websocket>=0.10
+gunicorn>=22.0
+pytest>=8.0
+watchdog>=4.0

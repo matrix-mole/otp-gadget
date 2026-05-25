@@ -1,0 +1,10 @@
+adafruit-circuitpython-miniqr
+mpremote
+qrcode
+# sim_smoke.py (end-to-end backend smoke test)
+requests
+python-socketio[client]
+# export_release.py (open-source / builder-pack export)
+PyYAML
+pathspec
+markdown

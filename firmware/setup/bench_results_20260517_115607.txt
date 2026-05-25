@@ -1,0 +1,57 @@
+Board: alice  (/dev/cu.usbmodem1201)
+Date:  2026-05-17 09:56:07 UTC
+
+
+  OTP Gadget – Exchange Speed Benchmark
+  MicroPython 3.4.0; MicroPython v1.26.0-preview.370.gaa2362d4d.dirty on 2025-07-30
+
+==============================================================
+[1] TRNG  –  os.urandom throughput
+==============================================================
+  Source: os.urandom  (RP2350 hardware TRNG)
+  Measuring (. = 1 MB): Traceback (most recent call last):
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/mpremote/main.py", line 614, in main
+    handler_func(state, args)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/mpremote/commands.py", line 515, in do_run
+    _do_execbuffer(state, buf, args.follow)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/mpremote/commands.py", line 489, in _do_execbuffer
+    ret, ret_err = state.transport.follow(timeout=None, data_consumer=stdout_write_bytes)
+                   ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/mpremote/transport_serial.py", line 204, in follow
+    data = self.read_until(1, b"\x04", timeout=timeout, data_consumer=data_consumer)
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/mpremote/transport_serial.py", line 143, in read_until
+    elif self.serial.inWaiting() > 0:
+         ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/serial/serialutil.py", line 594, in inWaiting
+    return self.in_waiting
+           ^^^^^^^^^^^^^^^
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/serial/serialposix.py", line 549, in in_waiting
+    s = fcntl.ioctl(self.fd, TIOCINQ, TIOCM_zero_str)
+OSError: [Errno 6] Device not configured
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/bin/mpremote", line 7, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/mpremote/main.py", line 636, in main
+    do_disconnect(state)
+    ~~~~~~~~~~~~~^^^^^^^
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/mpremote/commands.py", line 89, in do_disconnect
+    state.transport.close()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/mpremote/transport_serial.py", line 118, in close
+    raise er
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/mpremote/transport_serial.py", line 111, in close
+    self.serial.rts = False
+    ^^^^^^^^^^^^^^^
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/serial/serialutil.py", line 463, in rts
+    self._update_rts_state()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aparrot/Projects/one-time-pad-gadget/scripts/venv/lib/python3.13/site-packages/serial/serialposix.py", line 708, in _update_rts_state
+    fcntl.ioctl(self.fd, TIOCMBIC, TIOCM_RTS_str)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 6] Device not configured
