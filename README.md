@@ -7,7 +7,7 @@ A handheld, air-gapped device for exchanging encrypted messages with a one-time 
 - **`firmware/`** - MicroPython source running on the gadget.
 - **`scripts/`** - flash, build, and dev utilities.
 - **`docs/`** - parts overview and order checklist with supplier SKUs.
-- **`case-design/`** - printable case `.3mf` files, slicer settings, and the before-print checklist.
+- **`case-design/`** - printable case `.3mf` files, preview images, slicer settings, and the before-print checklist.
 - **`assembly/`** - wiring diagrams and assembly notes.
 
 Everything needed to build the gadget end-to-end (source parts, assemble, flash, slice, print, use) is in this repo. Nothing is paywalled.
