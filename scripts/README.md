@@ -25,11 +25,9 @@ The agent only needs the user for physical actions (plugging USB, swapping SD ca
   vs localhost and the deployed backend: `python3 scripts/sim_smoke.py [BASE_URL]`
 - `qr_size_check.py` - one-off spike to determine max plaintext size for QR
 - `qr_size_check_results.md` - output of the spike
-- `check_em_dashes.sh` - pre-commit hook: rejects em dashes in tracked files
 - `cost_calculator.py` - prints a NOK-denominated cost breakdown (components, shipping, customs/VAT). Run with `python3 scripts/cost_calculator.py`. Not part of any release.
-- `export_release.py` - export a public release folder or a paid Builder Pack zip from this private repo (see below)
-- `release-manifest.public.yml` - whitelist for the public open-source release (firmware, parts list, order checklist, assembly, case docs, etc.)
-- `release-manifest.builder-pack.yml` - whitelist for the paid Builder Pack zip (just the printable case `.3mf` files)
+- `export_release.py` - export a public release folder from this private repo (see below)
+- `release-manifest.public.yml` - whitelist for the public open-source release (firmware, parts list, order checklist, assembly, case docs, printable case `.3mf` files, etc.)
 - `requirements.txt` - Python deps for the scripts venv
 - `macros/` - named tap-sequence files for reproducing known bugs
 
@@ -207,12 +205,11 @@ click 40 220          # + Add contact
 
 ## export_release.py
 
-Exports a subset of this private repo for distribution. Two targets:
+Exports a subset of this private repo to the public open-source repo.
 
-- `--target public` writes a folder intended to be the working tree of the public open-source repo (`matrix-mole/otp-gadget` or equivalent). Includes firmware, parts list, order checklist, assembly docs, case support docs (slicer settings, before-print checklist) — everything a builder needs except the printable case CAD.
-- `--target builder-pack` writes a zip for upload to Gumroad as the paid Builder Pack. Contains just the printable case `.3mf` files.
+- `--target public` writes a folder intended to be the working tree of the public open-source repo (`matrix-mole/otp-gadget` or equivalent). Includes everything a builder needs end-to-end: firmware, parts list, order checklist, assembly docs, case support docs, AND the printable case `.3mf` files.
 
-Each target is driven by its own manifest: `release-manifest.public.yml` / `release-manifest.builder-pack.yml`. See [`docs/commercialization/open-source-release-strategy.md`](../docs/commercialization/open-source-release-strategy.md) for what belongs in each list and why.
+Driven by `release-manifest.public.yml`. See [`docs/commercialization/open-source-release-strategy.md`](../docs/commercialization/open-source-release-strategy.md) for what belongs in the list and why.
 
 **Prerequisites:**
 
@@ -225,7 +222,6 @@ pip install -r scripts/requirements.txt
 
 ```bash
 python scripts/export_release.py --target public                # writes ../otp-gadget/
-python scripts/export_release.py --target builder-pack          # writes ../otp-gadget-builder-pack.zip
 python scripts/export_release.py --target public --dry-run      # list files, write nothing
 python scripts/export_release.py --target public --force        # overwrite an existing output
 ```
@@ -237,7 +233,7 @@ python scripts/export_release.py --target public --force        # overwrite an e
 3. Keep files that match an `include` pattern and don't match any `exclude` pattern (gitignore-style globs via `pathspec`).
 4. Run a secret scan on each included file: built-in patterns (GitHub/Google/AWS/Stripe keys, private-key headers, generic `secret = "..."` / `password = "..."` / `api_key = "..."` assignments) plus any `extra_secret_patterns` from the manifest. Binary files are skipped. Files listed in the manifest's `allowlist` may match without aborting.
 5. On any unallowlisted match, the script exits with a list of offending files (no output written).
-6. For each entry in the manifest's `render_html` list, render the source markdown to a self-contained HTML file (inline CSS, no external assets) and ship it next to the source. Available for any future paid pack that wants to bundle a polished HTML guide (the current Builder Pack is just `.3mf` files, so no markdown rendering happens today).
+6. For each entry in the manifest's `render_html` list, render the source markdown to a self-contained HTML file (inline CSS, no external assets) and ship it next to the source. Not used by the public manifest today; kept as a generic capability.
 7. On success: folder mode copies files preserving paths (existing `.git/` in the target is preserved by `--force`, the rest is wiped); zip mode writes a single archive.
 
 The script is idempotent. A non-empty folder target or pre-existing zip refuses to overwrite without `--force`, so accidental re-runs can't silently destroy local edits.

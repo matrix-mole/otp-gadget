@@ -4,13 +4,13 @@ A handheld, air-gapped device for exchanging encrypted messages with a one-time 
 
 ## What this repo contains
 
-- **`firmware/`** — MicroPython source running on the gadget.
-- **`scripts/`** — flash, build, and dev utilities.
-- **`docs/`** — parts overview and order checklist with supplier SKUs.
-- **`case-design/`** — slicer settings + before-print checklist for the 3D-printed case.
-- **`assembly/`** — wiring diagrams and assembly notes.
+- **`firmware/`** - MicroPython source running on the gadget.
+- **`scripts/`** - flash, build, and dev utilities.
+- **`docs/`** - parts overview and order checklist with supplier SKUs.
+- **`case-design/`** - printable case `.3mf` files, slicer settings, and the before-print checklist.
+- **`assembly/`** - wiring diagrams and assembly notes.
 
-The printable case STL files (`.3mf`) are not in this repo — they're sold separately as a small Builder Pack to fund the project. Everything else needed to build the gadget is here.
+Everything needed to build the gadget end-to-end (source parts, assemble, flash, slice, print, use) is in this repo. Nothing is paywalled.
 
 ## Where to go next
 
@@ -18,8 +18,9 @@ The printable case STL files (`.3mf`) are not in this repo — they're sold sepa
 |---|---|
 | Try it in a browser demo | [matrixmole.com/otp-gadget](https://matrixmole.com/otp-gadget) |
 | Build one yourself | [Builder docs](https://matrixmole.com/otp-gadget/docs) |
-| Buy a ready-made device or the printable case | [Product page](https://matrixmole.com/products/otp-gadget) |
+| Reserve a ready-made device (when available) | [Product page](https://matrixmole.com/products/otp-gadget) |
 | Read the firmware source | [`firmware/`](firmware/) |
+| Support the project | [GitHub Sponsors](https://github.com/sponsors/matrix-mole) |
 
 ## How it works (short version)
 
@@ -33,7 +34,10 @@ Off-the-shelf modules, no custom PCB: Waveshare RP2350-Touch-LCD-3.5 (3.5" capac
 
 ## License
 
-- **Firmware** (`firmware/`, `scripts/`, `main.py`): GPLv3 — [LICENSE-firmware](LICENSE-firmware).
-- **Documentation** (`README.md`, `docs/`, `case-design/*.md`, `assembly/`): CC BY-SA 4.0 — [LICENSE-docs](LICENSE-docs).
-- **Printable case** (`case-design/Case*.3mf`): not in this repo, sold separately as the Builder Pack. Not covered by either license above.
+- **Firmware** (`firmware/`, `scripts/`, `main.py`): GPLv3 - [LICENSE-firmware](LICENSE-firmware).
+- **Documentation and printable case CAD** (`README.md`, `docs/`, `case-design/**` including the `.3mf` files, `assembly/`): CC BY-SA 4.0 - [LICENSE-docs](LICENSE-docs).
 - **Matrix Mole / OTP Gadget brand**: not licensed. Forks must not present themselves as the official product.
+
+## Supporting the project
+
+If this is useful to you, you can support the work via [GitHub Sponsors](https://github.com/sponsors/matrix-mole). All revenue goes back into parts, testing, and (eventually) EEA compliance for a built-unit run via the reservation model on the product page above.

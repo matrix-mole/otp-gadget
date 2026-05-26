@@ -53,5 +53,5 @@ If a device claims to be this gadget but contains any of the above, it is not th
 
 - Buying guide and supplier links: [`docs/order-checklist.md`](order-checklist.md).
 - Wiring: `assembly/` (rendered diagram). Editable source files (`assembly/*.af`) are not shipped publicly.
-- Case design: `case-design/README.md`, `case-design/slicer-settings.md`, `case-design/BEFORE-PRINT-CHECKLIST.md`. The printable case `.3mf` files themselves are a small paid Builder Pack on Gumroad; the rest of `case-design/` ships publicly.
+- Case design: `case-design/README.md`, `case-design/slicer-settings.md`, `case-design/BEFORE-PRINT-CHECKLIST.md`, and the printable `.3mf` files (`Case bottom.3mf`, `Case top.3mf`, `Case-slice-file.3mf`) - all public under CC BY-SA 4.0.
 - Firmware: `firmware/`.
