@@ -9,10 +9,10 @@ Everything you need to buy to build one OTP gadget. You will want to build at le
 - [ ] **RP2350-Touch-LCD-3.5** - $25 each - https://www.waveshare.com/rp2350-touch-lcd-3.5.htm
   - 3.5 inch IPS touchscreen, RP2350B MCU, AXP2101 PMIC, onboard MicroSD slot, USB-C. The brain and the screen of the gadget in a single pre-assembled module.
 
-## RS Components Norway - https://no.rs-online.com
+## RS Components - https://www.rs-online.com
 
 - [ ] **RS PRO 3.7V 1800mAh LiPo battery** - ~$21 each - https://no.rs-online.com/web/p/speciality-size-rechargeable-batteries/1449405
-  - 53.5 x 35 x 10.4 mm, bare wires. Other 3.7V LiPo cells in similar dimensions work too; this is just the one that fits the case nicely.
+  - 53.5 x 35 x 10.4 mm, bare wires. Other 3.7V LiPo cells in similar dimensions work too; this is just the one that fits the case nicely. The deep link above is to the Norway store — RS has equivalent stock in most countries; search the local RS site for the SKU or for "RS PRO 1800 mAh".
 
 ## AliExpress - https://www.aliexpress.com
 
