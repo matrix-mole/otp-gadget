@@ -28,6 +28,12 @@ The device has one USB-C port, built into the RP2350-Touch-LCD-3.5 board.
 - In normal use, the user plugs in any USB-C charger. No separate charging module or USB-C breakout board is needed.
 - **Plugging in the cable does not power the device on.** The AXP2101 charges the battery in the background while the MCU stays off. To power on while charging, press the PWR button as normal.
 
+## Battery
+
+Single-cell 3.7 V LiPo (~1800 mAh) connected to the Waveshare board's onboard JST socket via the MX1.25 2-pin cable listed in [`order-checklist.md`](order-checklist.md).
+
+**Polarity warning.** The JST socket on the Waveshare board is keyed but the MX1.25 cables shipped with batteries are not standardised in colour or pin order across suppliers. **Verify polarity with a multimeter before plugging the battery in:** red wire → `+`, black wire → `-`. Reversed polarity will damage the AXP2101 PMIC and brick the board. If the cable's pinout doesn't match the socket, swap the wires at the MX1.25 connector (the contacts pop out with a small pick).
+
 ## Physical controls
 
 - `PWR`: short press while on → immediately powers off (DEK zeroed, device shuts down); short press while off → powers on (boots to PIN entry); long press → hardware forced power-off via AXP2101 (fallback if firmware is frozen). **Inserting a USB-C cable does not count as a power-on** — only a deliberate button press boots the device.

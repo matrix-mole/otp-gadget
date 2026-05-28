@@ -15,7 +15,7 @@ A single off-the-shelf module bought as one unit and not modified. Bundles the M
 - **Touch**: capacitive panel with **FT6336U** controller (I2C, passive).
 - **PMIC / charger**: **AXP2101**. Battery charging, voltage regulation, on/off button. Controlled by I2C; otherwise a passive power-path chip.
 - **Onboard MicroSD slot**: standard TF socket wired to the MCU via SPI. No chip on the socket - just contacts and a pinout.
-- **RTC chip**: **PCF85063** is present on the module but **is not connected or used** in this build. The gadget works without wall-clock time. May be revisited if message timestamps become a feature.
+- **RTC chip**: **PCF85063**. On the module's internal I2C1 bus (no external wiring required). Used by the firmware for PIN-cooldown persistence: the cooldown deadline is stored as a wall-clock unix timestamp and checked against `hal.rtc_now()`, so power-cycling the device does not shortcut the wait. Runs off the same LiPo as the MCU.
 
 ### External components added by this design
 
