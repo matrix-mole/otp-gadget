@@ -14,6 +14,8 @@ All files below ship publicly under CC BY-SA 4.0. The project is fully open sour
 - `Case bottom.3mf` - printable bottom shell.
 - `Case top.3mf` - printable top shell.
 - `Case-slice-file.3mf` - pre-arranged slicer project file (a convenience: opens both shells in PrusaSlicer with the orientation/plate layout already set).
+- `Case.f3z` - Fusion 360 archive (parametric source). Open this if you want to edit cutouts to fit substituted parts.
+- `Case.step` - neutral CAD interchange (STEP). Same model as `Case.f3z`, but openable in FreeCAD, Onshape, SolidWorks, etc. Loses Fusion's parametric history.
 
 ## Preview
 
