@@ -8,7 +8,6 @@ All files below ship publicly under CC BY-SA 4.0. The project is fully open sour
 
 - [`README.md`](README.md) - this file.
 - [`slicer-settings.md`](slicer-settings.md) - the slicer settings used to print the case. Useful for anyone slicing the supplied `.3mf` files, or designing their own enclosure with similar tolerances.
-- [`BEFORE-PRINT-CHECKLIST.md`](BEFORE-PRINT-CHECKLIST.md) - sanity checks before hitting print. Saves filament.
 - [`previews/case-top-preview.png`](previews/case-top-preview.png) - screenshot preview of the top shell.
 - [`previews/case-bottom-preview.png`](previews/case-bottom-preview.png) - screenshot preview of the bottom shell.
 - [`previews/case-slice-orientation.png`](previews/case-slice-orientation.png) - PrusaSlicer plate/orientation preview.

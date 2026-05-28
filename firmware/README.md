@@ -2,6 +2,24 @@
 
 Written in **MicroPython**. Deployed to hardware via `scripts/flash.sh` (uses `mpremote`; see [`scripts/README.md`](../scripts/README.md) for usage). Thonny IDE is used only for interactive debugging/REPL.
 
+## First-time board setup (install MicroPython)
+
+> **Do this before assembling the case.** The `BOOTSEL` button is on the bare Waveshare board and is not exposed through the assembled case. If you close the case before flashing MicroPython, you will have to take it apart again.
+
+A fresh Waveshare RP2350-Touch-LCD-3.5 ships with Waveshare's demo firmware (a C program). Before `scripts/flash.sh` can deploy our firmware, MicroPython itself has to be on the board.
+
+1. Download Waveshare's MicroPython build for this exact board:
+   <https://github.com/waveshareteam/RP2350-Touch-LCD-3.5/blob/main/firmware/MicroPython/WAVESHARE_RP2350_Touch_LCD_3.5.uf2>
+   (On the GitHub page, click the **Download raw file** button.)
+2. Press and hold the **`BOOTSEL`** button on the Waveshare board.
+3. While still holding `BOOTSEL`, plug the board into your computer with a USB-C **data** cable (charge-only cables will not work).
+4. Release `BOOTSEL`. The board now mounts on your computer as a USB drive named `RPI-RP2`.
+5. Drag the downloaded `.uf2` file onto the `RPI-RP2` drive. The board reboots into MicroPython automatically; the drive disappears from your file manager.
+
+You only do this once per board. The MicroPython runtime persists across reboots.
+
+After this, MicroPython is on the board but the OTP firmware is not yet — see [`../scripts/README.md`](../scripts/README.md) (the `flash.sh` section) to deploy it.
+
 ## Index
 
 - `core/` - pure Python business logic (OTP, SD data structure, message flows). Runs anywhere.
