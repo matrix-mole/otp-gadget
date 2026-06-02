@@ -105,3 +105,5 @@ A future version may add a separate avalanche-noise entropy source and XOR it wi
 - MicroSD forensic deletion: used pad bytes can be scrubbed through the filesystem, but the SD card controller may retain old physical flash cells because of wear-leveling.
 - Guest card exposure during key exchange: B's device has read access to A's card while slotted, but A's OTP data is encrypted and inaccessible. Only A's `/exchange/` staging area (raw random bytes not tied to any messages) is readable.
 - `device_secret` at rest: stored unencrypted in the MicroPython filesystem on MCU flash. Physical access with SWD/Picoprobe can read it, which collapses the "device stolen alone" defense — an attacker with both the device and the SD card can brute-force a 4–6 digit PIN offline. Hardware-level flash lockdown is deferred to a future version.
+
+See also: [Related projects / prior art](related-projects.md) — how OTP Gadget's choices compare to other air-gapped messaging gadgets.

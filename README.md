@@ -35,6 +35,7 @@ Deeper design docs for builders and reviewers:
 | Security architecture (KEK/DEK, threat model, weaknesses) | [`docs/security.md`](docs/security.md) |
 | User flows (boot, contacts, send/receive, settings) | [`docs/user-flows.md`](docs/user-flows.md) |
 | Error handling and recovery | [`docs/error-handling.md`](docs/error-handling.md) |
+| Related projects / prior art | [`docs/related-projects.md`](docs/related-projects.md) |
 
 ## How it works (short version)
 
